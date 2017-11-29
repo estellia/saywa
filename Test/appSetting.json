@@ -1,0 +1,8 @@
+﻿{
+  "ConnectionStrings": {
+    "ConnectString": "server=127.0.0.1;uid=root;pwd=123456;database=test;"
+  },
+  "Redis": {
+    "ConnectionString": "192.168.150.31:6379"
+  }
+}
