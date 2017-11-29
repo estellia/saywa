@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "Entities": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "SayWa.Business": "1.0.0-*",
+    "SayWa.Service": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
