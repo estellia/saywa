@@ -11,6 +11,7 @@ using SayWa.Entities.Common;
 using Newtonsoft.Json.Serialization;
 using Role.Core;
 using Role.Business;
+using SayWa.Business;
 
 namespace Role.Roles
 {

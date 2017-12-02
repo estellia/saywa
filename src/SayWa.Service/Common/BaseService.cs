@@ -13,15 +13,17 @@ namespace SayWa.Service
     {
         private ConnectionFactory _connFactory;
         private string _tbName = "";
+        private int _tbType = 0;  //0-mysql 1-mssql
 
         /// <summary>
         /// 构造方法
         /// </summary>
         /// <param name="connFactory"></param>
-        public BaseService(ConnectionFactory connFactory,string tabName)
+        public BaseService(ConnectionFactory connFactory,string tabName,int tbType=0)
         {
             _connFactory = connFactory;
             _tbName = tabName;
+            _tbType = tbType;
         }
 
         public ConnectionFactory ConnectFactory
@@ -71,7 +73,18 @@ namespace SayWa.Service
         public virtual long Add(T model,string sql)
         {
             if (string.IsNullOrEmpty(sql)) return 0;
-            sql += @"; select last_insert_id();";
+            if (_tbType == 0)
+            {
+                sql += @"; select last_insert_id();";  //mysql
+            }
+            else if (_tbType == 1)
+            {
+                sql += @"; select @@identity;";          //mssql
+            }
+            else
+            {
+                sql += @" select 0";
+            }
             using (var conn = _connFactory.GetMySqlConn())
             {
                 var id = conn.ExecuteScalar(sql,model);
